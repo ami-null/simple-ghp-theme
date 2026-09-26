@@ -1,0 +1,54 @@
+# Demo / development config for previewing this theme locally
+# (bundle exec jekyll serve). Consuming sites set their own _config.yml —
+# see README.md for the full list of options this theme reads.
+
+title: Course Theme Demo
+description: "A lightweight, configurable Jekyll theme for course sites."
+show_title: true
+show_description: true
+theme_toggle: true
+
+favicon: # e.g. /assets/favicon.ico
+
+font:
+  name: # e.g. "Inter" — leave blank to use the browser's default font stack
+  weights: [400, 600]
+
+nav_links:
+  - text: GitHub
+    url: https://github.com/
+  - text: Syllabus
+    url: /syllabus/
+
+toc:
+  enabled: true
+  position: right   # left | right | top
+
+math:
+  enabled: true
+  engine: katex     # katex | mathjax
+  macros:
+    "\\bX": "\\mathbf{X}"
+    "\\bx": "\\mathbf{x}"
+    "\\by": "\\mathbf{y}"
+    "\\bbeta": "\\boldsymbol{\\beta}"
+    "\\Var": "\\operatorname{Var}"
+    "\\Cov": "\\operatorname{Cov}"
+
+footer_links:
+  - title: Course
+    links:
+      - text: Syllabus
+        url: /syllabus/
+      - text: Schedule
+        url: /schedule/
+  - title: Resources
+    links:
+      - text: Reference text
+        url: https://example.com/
+  - title: Connect
+    links:
+      - text: GitHub
+        url: https://github.com/
+
+copyright: "&copy; 2026. All rights reserved."

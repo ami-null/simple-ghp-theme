@@ -1,0 +1,44 @@
+<header class="site-header">
+  <div class="site-header__row wrapper">
+    <div class="site-header__left">
+      {%- if site.show_title != false %}
+      <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      {%- endif %}
+    </div>
+
+    <nav class="site-header__links" aria-label="Primary">
+      {%- for link in site.nav_links %}
+      <a class="nav-link" href="{{ link.url }}">{{ link.text }}</a>
+      {%- endfor %}
+    </nav>
+
+    <div class="site-header__right">
+      {%- if site.theme_toggle != false %}
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4.5a1 1 0 0 1-1-1V2a1 1 0 1 1 2 0v1.5a1 1 0 0 1-1 1zm0 15a1 1 0 0 1 1 1V22a1 1 0 1 1-2 0v-1.5a1 1 0 0 1 1-1zM4.5 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1.5a1 1 0 0 1 1 1zm15 0a1 1 0 0 1 1-1H22a1 1 0 1 1 0 2h-1.5a1 1 0 0 1-1-1zM6.34 6.34a1 1 0 0 1-1.41 0L3.87 5.29a1 1 0 1 1 1.41-1.41l1.06 1.06a1 1 0 0 1 0 1.4zm12.02 12.02a1 1 0 0 1-1.41 0l-1.06-1.06a1 1 0 1 1 1.41-1.41l1.06 1.06a1 1 0 0 1 0 1.41zM6.34 17.66a1 1 0 0 1 0 1.41l-1.06 1.06a1 1 0 1 1-1.41-1.41l1.06-1.06a1 1 0 0 1 1.41 0zM19.77 5.29a1 1 0 0 1 0 1.41l-1.06 1.06a1 1 0 1 1-1.41-1.41l1.06-1.06a1 1 0 0 1 1.41 0zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/>
+        </svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.742 13.045a8.088 8.088 0 0 1-2.077.273c-4.508 0-8.16-3.652-8.16-8.16 0-1.095.216-2.14.608-3.093a.75.75 0 0 0-.917-.99A10.098 10.098 0 0 0 3 11.09C3 16.56 7.44 21 12.91 21a10.1 10.1 0 0 0 9.816-7.633.75.75 0 0 0-.984-.322z"/>
+        </svg>
+      </button>
+      {%- endif %}
+
+      {%- if site.nav_links and site.nav_links.size > 0 %}
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-links">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+      {%- endif %}
+    </div>
+  </div>
+
+  {%- if site.nav_links and site.nav_links.size > 0 %}
+  <nav class="site-header__mobile-links" id="mobile-nav-links" aria-label="Primary">
+    {%- for link in site.nav_links %}
+    <a class="nav-link" href="{{ link.url }}">{{ link.text }}</a>
+    {%- endfor %}
+  </nav>
+  {%- endif %}
+</header>

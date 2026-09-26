@@ -1,0 +1,39 @@
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --bg: #ffffff;
+  --bg-alt: #f3f4f6;
+  --text: #1f2328;
+  --text-muted: #57606a;
+  --border: #d9dde3;
+  --accent: #3568c9;
+  --accent-contrast: #ffffff;
+
+  --max-width: 800px;
+  --toc-width: 220px;
+  --header-height: 56px;
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --bg-alt: #232323;
+  --text: #d8d8d8;
+  --text-muted: #9a9a9a;
+  --border: #333333;
+  --accent: #7aa9f7;
+  --accent-contrast: #10151c;
+}
+
+/* Fallback for the rare case JS is disabled, so the toggle-setting script
+   (which sets data-theme before paint) never ran. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    --bg: #1a1a1a;
+    --bg-alt: #232323;
+    --text: #d8d8d8;
+    --text-muted: #9a9a9a;
+    --border: #333333;
+    --accent: #7aa9f7;
+    --accent-contrast: #10151c;
+  }
+}

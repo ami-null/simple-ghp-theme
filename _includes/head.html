@@ -1,0 +1,43 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title %}{{ page.title | escape }} &middot; {% endif %}{{ site.title }}</title>
+
+{%- if site.description %}
+<meta name="description" content="{{ site.description | escape }}">
+{%- endif %}
+
+{%- if site.favicon %}
+<link rel="icon" href="{{ site.favicon | relative_url }}">
+{%- endif %}
+
+{%- if site.font.name %}
+{%- assign google_font_name = site.font.name | replace: ' ', '+' -%}
+{%- if site.font.weights -%}
+  {%- assign font_weight_str = site.font.weights | join: ';' -%}
+{%- else -%}
+  {%- assign font_weight_str = '400;600' -%}
+{%- endif -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family={{ google_font_name }}:wght@{{ font_weight_str }}&display=swap" rel="stylesheet">
+<style>
+  :root { --font-family: "{{ site.font.name }}", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+</style>
+{%- endif %}
+
+<link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+
+{%- if site.math.enabled %}
+{% include math.html %}
+{%- endif %}
+
+<script>
+  // Set the theme before first paint, so there's no flash of the wrong theme.
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {}
+  })();
+</script>

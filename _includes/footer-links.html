@@ -1,0 +1,16 @@
+{%- if site.footer_links and site.footer_links.size > 0 %}
+<footer class="footer-links">
+  <div class="wrapper footer-links__columns">
+    {%- for column in site.footer_links %}
+    <div class="footer-links__column">
+      {%- if column.title %}<h3 class="footer-links__title">{{ column.title }}</h3>{%- endif %}
+      <ul class="footer-links__list">
+        {%- for link in column.links %}
+        <li><a href="{{ link.url }}">{{ link.text }}</a></li>
+        {%- endfor %}
+      </ul>
+    </div>
+    {%- endfor %}
+  </div>
+</footer>
+{%- endif %}
