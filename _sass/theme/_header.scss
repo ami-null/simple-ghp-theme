@@ -10,6 +10,24 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
+/* header.floating: false — a plain full-width bar instead of a detached,
+   rounded floating one. */
+.site-header--flat {
+  top: 0;
+  max-width: none;
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* header.sticky: false — scrolls away with the page instead of staying
+   pinned. */
+.site-header--static {
+  position: static;
+}
+
 .site-header__row {
   display: flex;
   align-items: center;

@@ -1,4 +1,4 @@
-<header class="site-header">
+<header class="site-header{% if site.header.floating == false %} site-header--flat{% endif %}{% if site.header.sticky == false %} site-header--static{% endif %}">
   <div class="site-header__row">
     <div class="site-header__left">
       {%- if site.show_title != false %}

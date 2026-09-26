@@ -29,6 +29,10 @@ description: "A short description of the course."
 show_description: true  # false hides the description line even if `description` is set
 theme_toggle: true       # false removes the light/dark toggle entirely
 
+header:
+  floating: true           # false = plain full-width bar instead of a detached, rounded, floating one
+  sticky: true              # false = scrolls away with the page instead of staying pinned in view
+
 favicon: /assets/favicon.ico   # optional; omit for no favicon
 
 font:
@@ -71,7 +75,7 @@ copyright: "&copy; 2026 Your Name. All rights reserved."   # second footer; omit
 
 - **Mobile**: below 700px the topbar keeps the site title and the theme toggle visible, and collapses `nav_links` behind a hamburger button that expands the topbar downward. If `nav_links` is empty, the hamburger never renders.
 - **Table of contents**: entries are pulled from `h2`/`h3` elements in the page content at load time (a small script in `assets/js/theme.js`), including a scroll-based highlight of the current section. No config needed per page — it just reads what's on the page. With `position: left` or `right`, the TOC sits in a grid gutter column beside the centered content column (`position: sticky`, so it starts wherever it naturally falls below your header/description and then sticks while scrolling) rather than sharing a container with the content, so the content column stays centered the same way with or without a TOC. Below ~1150px viewport width there's no room for that gutter, so it falls back to a static block right below the description — same spot `position: top` always uses.
-- **Topbar**: sticky and visually detached (rounded corners, shadow, margin from the viewport edges) rather than a full-width bar — it stays visible while scrolling and floats above the page rather than sitting flush against it.
+- **Topbar**: sticky and visually detached (rounded corners, shadow, margin from the viewport edges) by default — `header.floating: false` reverts it to a plain full-width bar, and `header.sticky: false` makes it scroll away with the page instead of staying pinned. The two are independent, so any combination works.
 - **Dark mode**: respects the visitor's OS preference on first visit, remembers an explicit toggle in `localStorage` after that. Colors are deliberately not pure black/white — see `_sass/theme/_variables.scss` to adjust.
 - **Fonts**: with `font.name` set, the theme loads it from Google Fonts and applies it via a CSS variable; without it, `--font-family` falls back to the system font stack, so nothing needs to be re-declared per site.
 
