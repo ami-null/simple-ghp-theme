@@ -4,41 +4,58 @@
   padding: 32px 24px;
 }
 
-/* Floating left/right TOC: sits in the gutter beside the centered content
-   column, independent of that column's own centering. */
-.toc:not(.toc--top) {
-  position: fixed;
-  top: 120px;
-  width: var(--toc-width);
-  max-height: calc(100vh - 160px);
+/* Left/right TOC: a 3-column grid with the content centered in the middle
+   column and the TOC placed in a gutter column, instead of viewport-relative
+   fixed positioning. This means the TOC's start position is wherever normal
+   document flow puts it (i.e. always below the header/description, whatever
+   their height happens to be) rather than a guessed pixel offset. */
+.content-area {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, var(--max-width)) 1fr;
+  column-gap: 24px;
+  align-items: start;
+}
+
+.content-area .page-content {
+  grid-column: 2;
+  max-width: none;
+  margin: 0;
+}
+
+.toc--left,
+.toc--right {
+  position: sticky;
+  /* Clears the floating sticky header (16px top offset + its height) with a gap. */
+  top: calc(16px + var(--header-height) + 18px);
+  max-height: calc(100vh - 16px - var(--header-height) - 34px);
   overflow-y: auto;
   font-size: 0.9rem;
+  width: var(--toc-width);
 }
 
-.toc--left {
-  left: max(24px, calc((100vw - var(--max-width)) / 2 - var(--toc-width) - 24px));
-}
+.toc--left { grid-column: 1; justify-self: end; }
+.toc--right { grid-column: 3; justify-self: start; }
 
-.toc--right {
-  right: max(24px, calc((100vw - var(--max-width)) / 2 - var(--toc-width) - 24px));
-}
-
-/* Not enough room for a floating gutter TOC below this width. Fall back to
-   a static block right below the description, above the content — same
-   place `top` always renders — regardless of the configured position. */
+/* Not enough room for a side gutter below this width. Fall back to a static
+   block right below the description, above the content — same spot `top`
+   always renders — regardless of the configured position. */
 @media (max-width: 1150px) {
   .content-area {
-    display: flex;
-    flex-direction: column;
+    display: block;
+  }
+
+  .content-area .page-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
   }
 
   .toc--left,
   .toc--right {
     position: static;
     width: auto;
+    max-width: var(--max-width);
     max-height: none;
     overflow-y: visible;
-    max-width: var(--max-width);
     margin: 0 auto 24px;
     padding: 12px 16px;
     border: 1px solid var(--border);
