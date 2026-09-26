@@ -1,5 +1,7 @@
 # course-theme
 
+This repo is AI generated, use with caution.
+
 A minimal Jekyll theme for course/lecture-note sites on GitHub Pages. No JS beyond a small vanilla script for the dark/light toggle, the mobile menu, and table-of-contents extraction — plus an optional math-rendering library you can turn on or off.
 
 ## Usage
@@ -7,21 +9,21 @@ A minimal Jekyll theme for course/lecture-note sites on GitHub Pages. No JS beyo
 In the site that should use this theme, add to `_config.yml`:
 
 ```yaml
-remote_theme: <your-username>/course-theme
+remote_theme: ami-null/simple-ghp-theme
 plugins:
   - jekyll-remote-theme
 ```
 
-This works with GitHub Pages' classic build — no custom Ruby plugins are used, so nothing needs an Actions workflow. Pin to a specific commit once the theme is stable (`remote_theme: <user>/course-theme@<commit-sha>`) so a later change to the theme can't unexpectedly break a site using it.
+This works with GitHub Pages' classic build — no custom Ruby plugins are used, so nothing needs an Actions workflow. Pin to a specific commit once the theme is stable (`remote_theme: ami-null/simple-ghp-theme@<commit-sha>`) so a later change to the theme can't unexpectedly break a site using it.
 
 Pages need `layout: page` (or `layout: home` for the site root) in front matter, or rely on GitHub Pages' auto-assigned default layout for files without one.
 
 ## Config options
 
-All of these go in the *consuming site's* `_config.yml`, not the theme's.
+All of these go inside your site's `_config.yml`, *not the theme's*.
 
 ```yaml
-title: My Course
+title: Website title
 show_title: true        # false hides the site title in the topbar (link still there if you want, but default is to hide with the title)
 description: "A short description of the course."
 show_description: true  # false hides the description line even if `description` is set
