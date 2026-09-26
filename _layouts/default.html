@@ -15,17 +15,15 @@
 <nav class="toc toc--top" id="toc-nav" aria-label="Table of contents"></nav>
 {%- endif %}
 
-<div class="page-wrapper page-wrapper--toc-{% if site.toc.enabled %}{{ toc_position }}{% else %}none{% endif %}">
-  {%- if site.toc.enabled and toc_position != 'top' %}
-  <aside class="toc toc--{{ toc_position }}">
-    <nav id="toc-nav" aria-label="Table of contents"></nav>
-  </aside>
-  {%- endif %}
+<main class="page-content">
+  {{ content }}
+</main>
 
-  <main class="page-content">
-    {{ content }}
-  </main>
-</div>
+{%- if site.toc.enabled and toc_position != 'top' %}
+<aside class="toc toc--{{ toc_position }}">
+  <nav id="toc-nav" aria-label="Table of contents"></nav>
+</aside>
+{%- endif %}
 
 {% include footer-links.html %}
 {% include footer-copyright.html %}

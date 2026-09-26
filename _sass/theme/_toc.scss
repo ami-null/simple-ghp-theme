@@ -1,43 +1,44 @@
-.page-wrapper {
-  display: flex;
-  gap: 32px;
-  max-width: calc(var(--max-width) + var(--toc-width) + 32px);
-  margin: 0 auto;
-  padding: 32px 24px;
-  align-items: flex-start;
-}
-
-.page-wrapper--toc-none .page-content,
-.page-wrapper--toc-top .page-content {
+.page-content {
   max-width: var(--max-width);
   margin: 0 auto;
+  padding: 32px 24px;
 }
 
-.page-wrapper--toc-left { flex-direction: row; }
-.page-wrapper--toc-right { flex-direction: row-reverse; }
-
-.page-content {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.toc {
-  flex: 0 0 var(--toc-width);
-  position: sticky;
-  top: 24px;
+/* Floating left/right TOC: sits in the gutter beside the centered content
+   column, independent of that column's own centering. */
+.toc:not(.toc--top) {
+  position: fixed;
+  top: 120px;
+  width: var(--toc-width);
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
   font-size: 0.9rem;
-  align-self: flex-start;
+}
+
+.toc--left {
+  left: max(24px, calc((100vw - var(--max-width)) / 2 - var(--toc-width) - 24px));
+}
+
+.toc--right {
+  right: max(24px, calc((100vw - var(--max-width)) / 2 - var(--toc-width) - 24px));
+}
+
+/* Not enough room for a floating gutter TOC below this width. */
+@media (max-width: 1150px) {
+  .toc--left,
+  .toc--right {
+    display: none;
+  }
 }
 
 .toc--top {
   position: static;
-  flex: none;
-  width: 100%;
   max-width: var(--max-width);
   margin: 24px auto 0;
-  border: 1px solid var(--border);
-  border-radius: 6px;
   padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
 }
 
 .toc__list {
@@ -49,15 +50,3 @@
 .toc__item--h3 { padding-left: 14px; }
 .toc__item a { color: var(--text-muted); }
 .toc__item a.is-active { color: var(--accent); font-weight: 600; }
-
-@media (max-width: 900px) {
-  .page-wrapper--toc-left,
-  .page-wrapper--toc-right {
-    flex-direction: column;
-  }
-  .toc:not(.toc--top) {
-    position: static;
-    width: 100%;
-    order: -1;
-  }
-}

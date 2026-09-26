@@ -1,6 +1,13 @@
 .site-header {
-  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 16px;
+  z-index: 50;
+  max-width: var(--max-width);
+  margin: 16px auto 0;
   background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .site-header__row {
@@ -9,10 +16,11 @@
   justify-content: space-between;
   height: var(--header-height);
   gap: 16px;
+  padding: 0 20px;
 }
 
 .site-title {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--text);
   white-space: nowrap;
@@ -79,7 +87,7 @@
 }
 .site-header__mobile-links.is-open { display: flex; }
 .site-header__mobile-links .nav-link {
-  padding: 12px 24px;
+  padding: 12px 20px;
   color: var(--text);
   border-bottom: 1px solid var(--border);
 }
