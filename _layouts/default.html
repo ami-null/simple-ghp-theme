@@ -11,18 +11,23 @@
 {%- endif %}
 
 {%- assign toc_position = site.toc.position | default: 'right' -%}
+
 {%- if site.toc.enabled and toc_position == 'top' %}
 <nav class="toc toc--top" id="toc-nav" aria-label="Table of contents"></nav>
-{%- endif %}
-
 <main class="page-content">
   {{ content }}
 </main>
-
-{%- if site.toc.enabled and toc_position != 'top' %}
-<aside class="toc toc--{{ toc_position }}">
-  <nav id="toc-nav" aria-label="Table of contents"></nav>
-</aside>
+{%- else %}
+<div class="content-area">
+  {%- if site.toc.enabled %}
+  <aside class="toc toc--{{ toc_position }}">
+    <nav id="toc-nav" aria-label="Table of contents"></nav>
+  </aside>
+  {%- endif %}
+  <main class="page-content">
+    {{ content }}
+  </main>
+</div>
 {%- endif %}
 
 {% include footer-links.html %}

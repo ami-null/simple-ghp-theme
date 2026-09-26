@@ -23,11 +23,26 @@
   right: max(24px, calc((100vw - var(--max-width)) / 2 - var(--toc-width) - 24px));
 }
 
-/* Not enough room for a floating gutter TOC below this width. */
+/* Not enough room for a floating gutter TOC below this width. Fall back to
+   a static block right below the description, above the content — same
+   place `top` always renders — regardless of the configured position. */
 @media (max-width: 1150px) {
+  .content-area {
+    display: flex;
+    flex-direction: column;
+  }
+
   .toc--left,
   .toc--right {
-    display: none;
+    position: static;
+    width: auto;
+    max-height: none;
+    overflow-y: visible;
+    max-width: var(--max-width);
+    margin: 0 auto 24px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
   }
 }
 
