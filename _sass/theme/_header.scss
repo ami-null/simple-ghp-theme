@@ -98,20 +98,37 @@
   display: block;
 }
 
-.site-header__mobile-links {
-  display: none;
-  flex-direction: column;
-  border-top: 1px solid var(--border);
-}
-.site-header__mobile-links.is-open { display: flex; }
-.site-header__mobile-links .nav-link {
-  padding: 12px 20px;
-  color: var(--text);
-  border-bottom: 1px solid var(--border);
-}
-.site-header__mobile-links .nav-link:last-child { border-bottom: none; }
-
+/* Mobile: the same link list becomes a dropdown overlaying the page, so the
+   sticky header stays one row tall. */
 @media (max-width: 700px) {
-  .site-header__links { display: none; }
+  .site-header__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+  .site-header__links.is-open { display: flex; }
+  .site-header__links .nav-link {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header__links .nav-link:last-child { border-bottom: none; }
+
+  .site-header--flat .site-header__links {
+    left: 0;
+    right: 0;
+    border-width: 0 0 1px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
   .nav-toggle { display: flex; }
 }

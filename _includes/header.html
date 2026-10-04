@@ -6,7 +6,7 @@
       {%- endif %}
     </div>
 
-    <nav class="site-header__links" aria-label="Primary">
+    <nav class="site-header__links" id="nav-links" aria-label="Primary">
       {%- for link in site.nav_links %}
       <a class="nav-link" href="{{ link.url }}">{{ link.text }}</a>
       {%- endfor %}
@@ -25,7 +25,7 @@
       {%- endif %}
 
       {%- if site.nav_links and site.nav_links.size > 0 %}
-      <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-links">
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
         <span class="hamburger-bar"></span>
         <span class="hamburger-bar"></span>
         <span class="hamburger-bar"></span>
@@ -33,12 +33,4 @@
       {%- endif %}
     </div>
   </div>
-
-  {%- if site.nav_links and site.nav_links.size > 0 %}
-  <nav class="site-header__mobile-links" id="mobile-nav-links" aria-label="Primary">
-    {%- for link in site.nav_links %}
-    <a class="nav-link" href="{{ link.url }}">{{ link.text }}</a>
-    {%- endfor %}
-  </nav>
-  {%- endif %}
 </header>

@@ -14,11 +14,30 @@
 
   // --- Mobile nav toggle ---
   var navToggle = document.getElementById("nav-toggle");
-  var mobileLinks = document.getElementById("mobile-nav-links");
-  if (navToggle && mobileLinks) {
+  var navLinks = document.getElementById("nav-links");
+  if (navToggle && navLinks) {
+    var setNav = function (open) {
+      navLinks.classList.toggle("is-open", open);
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+
     navToggle.addEventListener("click", function () {
-      var isOpen = mobileLinks.classList.toggle("is-open");
-      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      setNav(!navLinks.classList.contains("is-open"));
+    });
+
+    // Close on any click outside the menu and its button (this includes the theme toggle).
+    document.addEventListener("click", function (e) {
+      if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+    });
+
+    // Close after picking a link (matters for same-page #anchors, which don't reload).
+    navLinks.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setNav(false);
+    });
+
+    // Close on Escape.
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setNav(false);
     });
   }
 
