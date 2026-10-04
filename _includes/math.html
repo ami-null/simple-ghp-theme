@@ -7,7 +7,7 @@
       displayMath: [['$$', '$$'], ['\\[', '\\]']],
       macros: {
         {%- for macro in site.math.macros -%}
-        "{{ macro[0] }}": "{{ macro[1] | escape }}"{% unless forloop.last %},{% endunless %}
+        {{ macro[0] | remove_first: '\' | jsonify }}: {{ macro[1] | jsonify }}{% unless forloop.last %},{% endunless %}
         {%- endfor -%}
       }
     }
@@ -28,11 +28,7 @@
           {left: "\\[", right: "\\]", display: true},
           {left: "\\(", right: "\\)", display: false}
         ],
-        macros: {
-          {%- for macro in site.math.macros -%}
-          "{{ macro[0] }}": "{{ macro[1] | escape }}"{% unless forloop.last %},{% endunless %}
-          {%- endfor -%}
-        }
+        macros: {{ site.math.macros | jsonify }}
       });
     }
   });
